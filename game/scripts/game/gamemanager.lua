@@ -62,8 +62,8 @@ function GameManager:new(...)
             "- Tutorial -\nNot *all* members though. Only those who have that particular complaint.",
             "- Tutorial -\nYour goal is to try and keep the factions from growing too large (below " ..
             FACTION_SIZE_DEFEAT .. " members).",
-            "- Tutorial -\nTry to survive for " .. years .. " years (minutes).\nTime pauses during speeches and fights.",
-            "- Tutorial -\nWill you speech frequently, or let time pass?\nA large faction is also a large army.",
+            "- Tutorial -\nTry to survive for " ..
+            years .. " years (minutes) with as few speeches as possible.\nTime pauses during speeches and fights.",
             "- Tutorial -\nGood luck, your grace."
         }
 
@@ -109,6 +109,7 @@ function GameManager:new(...)
     end
 
     self.timer = 0
+    self.speechCounter = 0
 end
 
 function GameManager:update(dt)
@@ -149,6 +150,7 @@ function GameManager:update(dt)
 end
 
 function GameManager:doSpeech(faction, complaint)
+    self.speechCounter = self.speechCounter + 1
     self.speeching = true
     self.music:setVolume(0, 1)
     self.trumpets:play()
