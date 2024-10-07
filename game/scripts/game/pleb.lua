@@ -91,6 +91,12 @@ function Pleb:searchForFaction(dt)
 end
 
 function Pleb:handleWalkingToFaction()
+    if not self.faction then
+        self.state = PlebState.Searching
+        self:walkToRandomLocation()
+        return
+    end
+
     if self:getDistance(self.faction) < self.faction.radius then
         self.state = PlebState.Searching
         self:stopMoving()
