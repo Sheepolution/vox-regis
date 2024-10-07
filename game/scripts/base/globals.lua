@@ -1,0 +1,13 @@
+GLOBAL = {}
+G = GLOBAL
+
+PI = math.pi
+TAU = PI * 2
+
+WIDTH = CONFIG.gameWidth
+HEIGHT = CONFIG.gameHeight
+
+GAME_WIDTH = CONFIG.baseWidth / CONFIG.gameScaleFake
+GAME_HEIGHT = CONFIG.baseHeight / CONFIG.gameScaleFake
+
+THRESHOLD = 0.0000000000000000000001
