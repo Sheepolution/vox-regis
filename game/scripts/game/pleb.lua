@@ -41,7 +41,7 @@ function Pleb:update(dt)
         if self.faction then
             self:searchForTarget(dt)
         else
-            if not G.Town.war and not self:searchForFaction(dt) then
+            if not G.GameManager.war and not G.GameManager.speeching and not self:searchForFaction(dt) then
                 self:searchForTarget(dt)
             end
         end

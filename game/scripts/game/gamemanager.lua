@@ -154,6 +154,7 @@ function GameManager:doSpeech(faction, complaint)
     self.speeching = true
     self.music:setVolume(0, 1)
     self.trumpets:play()
+    G.Town:onSpeech()
     self:delay(3, function()
         local speech = self.speechRandom()
         speech:play()

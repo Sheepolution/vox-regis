@@ -120,7 +120,6 @@ function Town:handleCamera()
 end
 
 function Town:startWar(faction, complaint)
-    self.war = true
     self.blamedFaction = faction
     self.blamedFor = complaint
 
@@ -162,8 +161,8 @@ function Town:onPlebDeath(pleb)
 end
 
 function Town:handleWarEnd()
-    if not self.war then return end
-    self.war = false
+    if not G.GameManager.war then return end
+
     for i, pleb in ipairs(self.plebs) do
         pleb.attacker = false
     end
@@ -177,6 +176,15 @@ function Town:checkIfWarHasEnded()
     if #self.defenders == 0 or #self.attackers == 0 then
         self:handleWarEnd()
     end
+end
+
+function Town:onSpeech()
+    self.plebs(function(p)
+        if p.faction and not p.factionOfficial then
+            p.faction = nil
+            p:moveToTarget(self:findRandomNonFactionLocation())
+        end
+    end)
 end
 
 return Town
